@@ -104,8 +104,9 @@ async function run() {
 
       app.delete("/bookedhotel/:id", async (req, res) => {
         const id = req.params.id;
-        console.log("deleting user with id", req);
-        res.json(1);
+        const query = { _id: ObjectId(id) };
+        const result = await servicesBookCollection.deleteOne(query);
+        res.json(result);
       });
     });
   } finally {
